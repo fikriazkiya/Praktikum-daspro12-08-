@@ -1,9 +1,14 @@
+import java.util.Scanner;
 public class kafe08 {
-    public static void menu(String namaPelangaan, boolean isMember) {
+    public static void menu(String namaPelangaan, boolean isMember, int jamKunjung) {
         System.out.println("Selamat datang, " + namaPelangaan + "!");
 
         if (isMember) {
             System.out.println("Anda adalah member, dapatkan diskon 10% untuk setiap pesanan!");
+        }
+
+        if (jamKunjung >= 14 && jamKunjung <= 16) {
+            System.out.println("Selamat! Anda mendapatkan promo Happy Hour! Diskon 20% untuk semua minuman.");
         }
 
         System.out.println("==== MENU RESTO KAFE ====");
@@ -17,6 +22,20 @@ public class kafe08 {
         System.out.println("Silahkan pilih menu yang ingin dipesan (1-6):");
     }
     public static void main(String[] args) {
-        menu("budi", false);
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Masukkan nama pelanggan: ");
+        String namaPelanggan = input.nextLine();
+
+        System.out.print("Apakah Anda member? (y/n): ");
+        String status = input.nextLine();
+        boolean isMember = status.equalsIgnoreCase("y");
+
+        System.out.print("Masukkan jam kunjungan (1-24): ");
+        int jamKunjung = input.nextInt();
+
+        menu(namaPelanggan, isMember, jamKunjung);
+    
+        input.close();
     }
 }
